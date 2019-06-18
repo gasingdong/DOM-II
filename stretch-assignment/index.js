@@ -32,6 +32,18 @@ blocks.forEach(block => {
 setInterval(() => {
   if (currentBlock && mouseDown && mouseIn) {
     const currentPos = parseInt(currentBlock.style.marginLeft || 10, 10);
-    currentBlock.style.marginLeft = currentPos + 1 + 'px';
+    // Maximum of 400px distance
+    if (currentPos < 400) {
+      currentBlock.style.marginLeft = currentPos + 1 + 'px';
+    }
   }
+  blocks.forEach(block => {
+    if (block != currentBlock || !mouseDown || !mouseIn) {
+      const currentPos = parseInt(block.style.marginLeft || 10, 10);
+
+      if (currentPos > 10) {
+        block.style.marginLeft = currentPos - 1 + 'px';
+      }
+    }
+  });
 }, 10);
