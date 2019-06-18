@@ -61,3 +61,11 @@ const para = document.querySelectorAll('p');
 para.forEach(p =>
   p.addEventListener('mousemove', event => toggleClass(event, 'blue-txt'))
 );
+
+// Use GSAP to animate button size change on double click
+const btns = document.querySelectorAll('.btn');
+btns.forEach(btn =>
+  btn.addEventListener('dblclick', event =>
+    TweenMax.to(event.target, 2, { width: '50px' })
+  )
+);
