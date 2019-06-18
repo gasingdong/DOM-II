@@ -7,8 +7,19 @@ function toggleClass(event, name) {
 
 // Nav Links
 const nav = document.querySelectorAll('nav a');
+const navBar = document.querySelector('nav');
+navBar.addEventListener('click', event => {
+  event.preventDefault();
+  toggleClass(event, 'red-bg');
+});
 nav.forEach(link => {
-  link.addEventListener('click', event => toggleClass(event, 'red-bg'));
+  link.addEventListener('click', event => {
+    // Without this, the class will toggle twice due to the above listener on nav (result: no change)
+    event.stopPropagation();
+    // Prevent links from reloading
+    event.preventDefault();
+    toggleClass(event, 'red-bg');
+  });
 });
 
 // Images
